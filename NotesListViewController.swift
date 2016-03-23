@@ -11,18 +11,34 @@ import UIKit
 class NotesListViewController: UIViewController {
   
   var notes: [Note] = []
+  let noteSegueIdentifier = "noteSegue"
   @IBOutlet weak var tableView: UITableView!
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
+
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
     
+    let localDocuments: [AnyObject]?
+    do {
+      localDocuments = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(localDocumentsDirectoryURL()!.path!)
+    } catch _ {
+      localDocuments = nil
+    }
+    if let theDocuments = localDocuments {
+      for document in theDocuments {
+        print("Found one")
+      }
+      
+    }
+
+
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if segue.identifier == "noteSelectedSegue" {
+    if segue.identifier == noteSegueIdentifier {
       let noteViewController = segue.destinationViewController as! NoteViewController
-      let noteIndexPath = self.tableView.indexPathForSelectedRow!
-      noteViewController.note = self.notes[noteIndexPath.row]
+      let noteDocument = sender as! Note
+      noteViewController.note = noteDocument
     }
   }
   
@@ -33,16 +49,27 @@ class NotesListViewController: UIViewController {
       textField.placeholder = "Note Title"
     }
     
-    let okayAction = UIAlertAction(title: "Okay", style: .Default) { (action) in
-      if let noteTitle = addNoteAlertController.textFields?.first?.text {
-      
-      }
-      
-    }
-    addNoteAlertController.addAction(okayAction)
-    
     let cancelAction = UIAlertAction(title: "Cancel", style: .Destructive, handler: nil)
     addNoteAlertController.addAction(cancelAction)
+    
+    let okayAction = UIAlertAction(title: "Okay", style: .Default) { (action) in
+      if let noteTitle = addNoteAlertController.textFields?.first?.text {
+        
+        let noteDocument = Note.createNoteWithTitle(noteTitle)
+        
+        noteDocument.saveToURL(noteDocument.fileURL, forSaveOperation: .ForCreating) { (success) -> Void in
+          if success == true {
+            self.notes.insert(noteDocument, atIndex: 0)
+            let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+            self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            self.performSegueWithIdentifier(self.noteSegueIdentifier, sender: noteDocument)
+          } else {
+            print("Save unsuccessful")
+          }
+        }
+      }
+    }
+    addNoteAlertController.addAction(okayAction)
 
     presentViewController(addNoteAlertController, animated: true, completion: nil)
   }
@@ -59,7 +86,14 @@ extension NotesListViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("noteCell", forIndexPath: indexPath)
+    let noteDocument = notes[indexPath.row]
+    cell.textLabel?.text = noteDocument.title
     return cell
   }
-  
+
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    let noteDocument = notes[indexPath.row]
+    performSegueWithIdentifier(noteSegueIdentifier, sender: noteDocument)
+  }
 }
