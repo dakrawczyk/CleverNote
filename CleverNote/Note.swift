@@ -45,7 +45,21 @@ class Note: UIDocument {
   class func getAllNotesInFileSystem() -> [Note] {
     let localDocuments: [AnyObject]?
     do {
-      localDocuments = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(localDocumentsDirectoryURL()!.path!)
+      localDocuments = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(appGroupContainerURL().path!)
+    } catch _ {
+      localDocuments = nil
+    }
+    if let fileNames = localDocuments as? [String] {
+      return Note.arrayOfNotesFromArrayOfFileNames(fileNames)
+    }
+    
+    return []
+  }
+  
+  class func getAllNotesInDocumentStorage(documentStorageURL: NSURL!) -> [Note] {
+    let localDocuments: [AnyObject]?
+    do {
+      localDocuments = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(documentStorageURL!.path!)
     } catch _ {
       localDocuments = nil
     }
@@ -86,7 +100,7 @@ class Note: UIDocument {
       protectedName = "Untitled"
     }
     
-    let localDoc = localDocumentsDirectoryURL()!
+    let localDoc = appGroupContainerURL()
     let urlWithName = localDoc.URLByAppendingPathComponent(protectedName)
     
     return urlWithName.URLByAppendingPathExtension(FILE_EXTENSION)
@@ -100,6 +114,12 @@ func ubiquitousContainerURL() -> NSURL {
 
 func ubiquitousDocumentsDirectoryURL() -> NSURL {
   return ubiquitousContainerURL().URLByAppendingPathComponent("Documents")
+}
+
+func appGroupContainerURL() -> NSURL {
+  let groupURL = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.com.WindyCityLab.CleverNote")!.URLByAppendingPathComponent("File Provider Storage")
+  print(groupURL)
+  return groupURL
 }
 
 func localDocumentsDirectoryURL() -> NSURL? {

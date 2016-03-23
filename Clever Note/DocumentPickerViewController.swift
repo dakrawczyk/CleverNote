@@ -15,9 +15,10 @@ class DocumentPickerViewController: UIDocumentPickerExtensionViewController {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     
-    notes = Note.getAllNotesInFileSystem()
+    notes = Note.getAllNotesInDocumentStorage(documentStorageURL!)
     print("got notes: \(notes)")
     tableView.reloadData()
+    
   }
   @IBAction func openDocument(sender: AnyObject?) {
     let documentURL = self.documentStorageURL!.URLByAppendingPathComponent("Untitled.txt")
