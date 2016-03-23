@@ -11,11 +11,36 @@ import UIKit
 class NoteViewController: UIViewController {
 
   var note: Note!
+  @IBOutlet weak var textView: UITextView!
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    self.title = note.title
-    
+    self.note.openWithCompletionHandler { (success) in
+      if success == true {
+        self.title = self.note.title
+        self.textView.text = self.note.documentText
+
+      }
+    }
+  }
+  
+  @IBAction func saveButtonTapped(sender: AnyObject) {
+    self.note.documentText = self.textView.text
+    self.note.saveToURL(self.note.fileURL, forSaveOperation: .ForOverwriting) { (success) in
+      
+      let resultAlertController = UIAlertController(title: "Note Saved", message: "Note Saved Successfully", preferredStyle: .Alert)
+      
+      if success == false {
+        resultAlertController.title = "Note Not Saved"
+        resultAlertController.message = "Error Saving Note"
+      }
+      
+      let okayAction = UIAlertAction(title: "Okay", style: .Default, handler: nil)
+      resultAlertController.addAction(okayAction)
+      self.presentViewController(resultAlertController, animated: true, completion: nil)
+      
+    }
+
   }
 
 }

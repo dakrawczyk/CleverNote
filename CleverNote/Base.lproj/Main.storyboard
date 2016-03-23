@@ -105,6 +105,16 @@
                             <constraint firstAttribute="trailing" secondItem="vFE-Fp-8Fc" secondAttribute="trailing" id="qU8-PS-BRG"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="TnP-8f-a9U">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="cIM-1P-AAi">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="JHc-CM-dKQ" id="2Ou-35-0m2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textView" destination="vFE-Fp-8Fc" id="Gv7-eq-Zfd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5P2-9m-tvZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

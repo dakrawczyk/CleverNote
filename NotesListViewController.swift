@@ -12,25 +12,20 @@ class NotesListViewController: UIViewController {
   
   var notes: [Note] = []
   let noteSegueIdentifier = "noteSegue"
+  let dateFormatter = NSDateFormatter()
+
+  
   @IBOutlet weak var tableView: UITableView!
   
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    dateFormatter.dateStyle = .ShortStyle
+  }
 
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     
-    let localDocuments: [AnyObject]?
-    do {
-      localDocuments = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(localDocumentsDirectoryURL()!.path!)
-    } catch _ {
-      localDocuments = nil
-    }
-    if let theDocuments = localDocuments {
-      for document in theDocuments {
-        print("Found one")
-      }
-      
-    }
-
+    self.notes = Note.getAllNotesInFileSystem()
 
   }
   
@@ -88,6 +83,12 @@ extension NotesListViewController: UITableViewDelegate, UITableViewDataSource {
     let cell = tableView.dequeueReusableCellWithIdentifier("noteCell", forIndexPath: indexPath)
     let noteDocument = notes[indexPath.row]
     cell.textLabel?.text = noteDocument.title
+    if let modificationDate = noteDocument.fileModificationDate {
+      cell.detailTextLabel?.hidden = false
+      cell.detailTextLabel?.text = dateFormatter.stringFromDate(modificationDate)
+    } else {
+      cell.detailTextLabel?.hidden = true
+    }
     return cell
   }
 
