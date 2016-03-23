@@ -55,7 +55,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="CleverNote" id="SDd-2i-LvW">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="2vK-ff-UaR">
-                            <color key="tintColor" red="0.7843137255" green="0.90196078430000004" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="addButtonTapped:" destination="BYZ-38-t0r" id="Acx-R8-zlY"/>
                             </connections>
@@ -121,9 +120,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UUL-zk-15Q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.21176470589999999" green="0.33333333329999998" blue="0.47843137250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.20392156862745098" green="1" blue="0.74901960784313726" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.078431372549019607" green="0.30588235294117649" blue="0.69803921568627447" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="0.0"/>
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
                     </navigationBar>

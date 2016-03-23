@@ -108,6 +108,8 @@ func localDocumentsDirectoryURL() -> NSURL? {
   if let docPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first {
     localDocumentsDirectoryURL = NSURL(fileURLWithPath: docPath)
   }
-  print("\(localDocumentsDirectoryURL!)")
+
+//  Uncomment this to find the path to your documents directory easily.
+//  print("\(localDocumentsDirectoryURL!)")
   return localDocumentsDirectoryURL
 }
