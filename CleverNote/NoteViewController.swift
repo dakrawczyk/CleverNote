@@ -13,16 +13,17 @@ class NoteViewController: UIViewController {
   var note: Note!
   @IBOutlet weak var textView: UITextView!
   
-  override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
+  override func viewDidLoad() {
+    super.viewDidLoad()
     self.note.openWithCompletionHandler { (success) in
       if success == true {
         self.title = self.note.title
         self.textView.text = self.note.documentText
-
       }
     }
+
   }
+
   
   @IBAction func saveButtonTapped(sender: AnyObject) {
     self.note.documentText = self.textView.text

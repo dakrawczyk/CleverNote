@@ -18,7 +18,7 @@
 		234AD5D81CA2E4A200D24AA9 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 234AD5D61CA2E4A200D24AA9 /* MainInterface.storyboard */; };
 		234AD5E31CA2E4A200D24AA9 /* FileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234AD5E21CA2E4A200D24AA9 /* FileProvider.swift */; };
 		234AD5E71CA2E4A200D24AA9 /* Clever NoteFileProvider.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 234AD5DE1CA2E4A200D24AA9 /* Clever NoteFileProvider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		234AD5EA1CA2E4A200D24AA9 /* Clever Note.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 234AD5D01CA2E4A200D24AA9 /* Clever Note.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		234AD5EA1CA2E4A200D24AA9 /* CleverNoteDocs.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 234AD5D01CA2E4A200D24AA9 /* CleverNoteDocs.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		234AD5F21CA2E55800D24AA9 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234AD5C61CA2D07A00D24AA9 /* Note.swift */; };
 		234AD5F31CA2E55800D24AA9 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234AD5C61CA2D07A00D24AA9 /* Note.swift */; };
 /* End PBXBuildFile section */
@@ -47,7 +47,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				234AD5EA1CA2E4A200D24AA9 /* Clever Note.appex in Embed App Extensions */,
+				234AD5EA1CA2E4A200D24AA9 /* CleverNoteDocs.appex in Embed App Extensions */,
 				234AD5E71CA2E4A200D24AA9 /* Clever NoteFileProvider.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -65,7 +65,7 @@
 		234AD5C21CA2CE5200D24AA9 /* NotesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotesListViewController.swift; path = ../NotesListViewController.swift; sourceTree = "<group>"; };
 		234AD5C41CA2D01A00D24AA9 /* NoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		234AD5C61CA2D07A00D24AA9 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
-		234AD5D01CA2E4A200D24AA9 /* Clever Note.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Clever Note.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		234AD5D01CA2E4A200D24AA9 /* CleverNoteDocs.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CleverNoteDocs.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		234AD5D31CA2E4A200D24AA9 /* Clever_Note.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Clever_Note.entitlements; sourceTree = "<group>"; };
 		234AD5D41CA2E4A200D24AA9 /* DocumentPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickerViewController.swift; sourceTree = "<group>"; };
 		234AD5D71CA2E4A200D24AA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -74,6 +74,8 @@
 		234AD5E11CA2E4A200D24AA9 /* Clever_NoteFileProvider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Clever_NoteFileProvider.entitlements; sourceTree = "<group>"; };
 		234AD5E21CA2E4A200D24AA9 /* FileProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProvider.swift; sourceTree = "<group>"; };
 		234AD5E41CA2E4A200D24AA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23ECFE671CA30E3A00E8529D /* CleverNote.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CleverNote.entitlements; sourceTree = "<group>"; };
+		23ECFE681CA30ECA00E8529D /* Clever NoteFileProvider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Clever NoteFileProvider.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				234AD5AD1CA2CDF300D24AA9 /* CleverNote.app */,
-				234AD5D01CA2E4A200D24AA9 /* Clever Note.appex */,
+				234AD5D01CA2E4A200D24AA9 /* CleverNoteDocs.appex */,
 				234AD5DE1CA2E4A200D24AA9 /* Clever NoteFileProvider.appex */,
 			);
 			name = Products;
@@ -124,6 +126,7 @@
 		234AD5AF1CA2CDF300D24AA9 /* CleverNote */ = {
 			isa = PBXGroup;
 			children = (
+				23ECFE671CA30E3A00E8529D /* CleverNote.entitlements */,
 				234AD5CA1CA2E34000D24AA9 /* Model */,
 				234AD5B01CA2CDF300D24AA9 /* AppDelegate.swift */,
 				234AD5B41CA2CDF300D24AA9 /* Main.storyboard */,
@@ -174,6 +177,7 @@
 		234AD5DF1CA2E4A200D24AA9 /* Clever NoteFileProvider */ = {
 			isa = PBXGroup;
 			children = (
+				23ECFE681CA30ECA00E8529D /* Clever NoteFileProvider.entitlements */,
 				234AD5E21CA2E4A200D24AA9 /* FileProvider.swift */,
 				234AD5E41CA2E4A200D24AA9 /* Info.plist */,
 				234AD5E01CA2E4A200D24AA9 /* Supporting Files */,
@@ -212,9 +216,9 @@
 			productReference = 234AD5AD1CA2CDF300D24AA9 /* CleverNote.app */;
 			productType = "com.apple.product-type.application";
 		};
-		234AD5CF1CA2E4A200D24AA9 /* Clever Note */ = {
+		234AD5CF1CA2E4A200D24AA9 /* CleverNoteDocs */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 234AD5EE1CA2E4A200D24AA9 /* Build configuration list for PBXNativeTarget "Clever Note" */;
+			buildConfigurationList = 234AD5EE1CA2E4A200D24AA9 /* Build configuration list for PBXNativeTarget "CleverNoteDocs" */;
 			buildPhases = (
 				234AD5CC1CA2E4A200D24AA9 /* Sources */,
 				234AD5CD1CA2E4A200D24AA9 /* Frameworks */,
@@ -224,9 +228,9 @@
 			);
 			dependencies = (
 			);
-			name = "Clever Note";
+			name = CleverNoteDocs;
 			productName = "Clever Note";
-			productReference = 234AD5D01CA2E4A200D24AA9 /* Clever Note.appex */;
+			productReference = 234AD5D01CA2E4A200D24AA9 /* CleverNoteDocs.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		234AD5DD1CA2E4A200D24AA9 /* Clever NoteFileProvider */ = {
@@ -258,12 +262,25 @@
 				TargetAttributes = {
 					234AD5AC1CA2CDF300D24AA9 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 4K7853APAS;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 					234AD5CF1CA2E4A200D24AA9 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 4K7853APAS;
 					};
 					234AD5DD1CA2E4A200D24AA9 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 4K7853APAS;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -281,7 +298,7 @@
 			projectRoot = "";
 			targets = (
 				234AD5AC1CA2CDF300D24AA9 /* CleverNote */,
-				234AD5CF1CA2E4A200D24AA9 /* Clever Note */,
+				234AD5CF1CA2E4A200D24AA9 /* CleverNoteDocs */,
 				234AD5DD1CA2E4A200D24AA9 /* Clever NoteFileProvider */,
 			);
 		};
@@ -355,7 +372,7 @@
 		};
 		234AD5E91CA2E4A200D24AA9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 234AD5CF1CA2E4A200D24AA9 /* Clever Note */;
+			target = 234AD5CF1CA2E4A200D24AA9 /* CleverNoteDocs */;
 			targetProxy = 234AD5E81CA2E4A200D24AA9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -475,10 +492,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = CleverNote/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.DaveKrawczyk.CleverNote;
+				PRODUCT_BUNDLE_IDENTIFIER = com.WindyCityLab.CleverNote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -487,10 +506,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = CleverNote/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.DaveKrawczyk.CleverNote;
+				PRODUCT_BUNDLE_IDENTIFIER = com.WindyCityLab.CleverNote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -498,11 +519,12 @@
 		234AD5EC1CA2E4A200D24AA9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "Clever NoteFileProvider/Clever_NoteFileProvider.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Clever NoteFileProvider/Clever NoteFileProvider.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Clever NoteFileProvider/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.DaveKrawczyk.CleverNote.Clever-NoteFileProvider";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.WindyCityLab.CleverNote.Clever-NoteFileProvider";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -511,11 +533,12 @@
 		234AD5ED1CA2E4A200D24AA9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "Clever NoteFileProvider/Clever_NoteFileProvider.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Clever NoteFileProvider/Clever NoteFileProvider.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Clever NoteFileProvider/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.DaveKrawczyk.CleverNote.Clever-NoteFileProvider";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.WindyCityLab.CleverNote.Clever-NoteFileProvider";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -525,10 +548,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Clever Note/Clever_Note.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Clever Note/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.DaveKrawczyk.CleverNote.Clever-Note";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.WindyCityLab.CleverNote.Clever-Note";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -537,10 +564,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Clever Note/Clever_Note.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Clever Note/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.DaveKrawczyk.CleverNote.Clever-Note";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.WindyCityLab.CleverNote.Clever-Note";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -564,6 +595,7 @@
 				234AD5C11CA2CDF300D24AA9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		234AD5EB1CA2E4A200D24AA9 /* Build configuration list for PBXNativeTarget "Clever NoteFileProvider" */ = {
 			isa = XCConfigurationList;
@@ -572,14 +604,16 @@
 				234AD5ED1CA2E4A200D24AA9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		234AD5EE1CA2E4A200D24AA9 /* Build configuration list for PBXNativeTarget "Clever Note" */ = {
+		234AD5EE1CA2E4A200D24AA9 /* Build configuration list for PBXNativeTarget "CleverNoteDocs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				234AD5EF1CA2E4A200D24AA9 /* Debug */,
 				234AD5F01CA2E4A200D24AA9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

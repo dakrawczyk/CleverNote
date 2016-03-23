@@ -25,8 +25,13 @@ class NotesListViewController: UIViewController {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     
-    self.notes = Note.getAllNotesInFileSystem()
+    refreshNoteList()
 
+  }
+  
+  func refreshNoteList() {
+    self.notes = Note.getAllNotesInFileSystem()
+    self.tableView.reloadData()
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -54,10 +59,9 @@ class NotesListViewController: UIViewController {
         
         noteDocument.saveToURL(noteDocument.fileURL, forSaveOperation: .ForCreating) { (success) -> Void in
           if success == true {
-            self.notes.insert(noteDocument, atIndex: 0)
-            let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-            self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
             self.performSegueWithIdentifier(self.noteSegueIdentifier, sender: noteDocument)
+            self.notes.append(noteDocument)
+//            self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
           } else {
             print("Save unsuccessful")
           }
