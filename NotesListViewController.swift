@@ -83,12 +83,7 @@ extension NotesListViewController: UITableViewDelegate, UITableViewDataSource {
     let cell = tableView.dequeueReusableCellWithIdentifier("noteCell", forIndexPath: indexPath)
     let noteDocument = notes[indexPath.row]
     cell.textLabel?.text = noteDocument.title
-    if let modificationDate = noteDocument.fileModificationDate {
-      cell.detailTextLabel?.hidden = false
-      cell.detailTextLabel?.text = dateFormatter.stringFromDate(modificationDate)
-    } else {
-      cell.detailTextLabel?.hidden = true
-    }
+
     return cell
   }
 

@@ -14,7 +14,6 @@
 		234AD5C31CA2CE5200D24AA9 /* NotesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234AD5C21CA2CE5200D24AA9 /* NotesListViewController.swift */; };
 		234AD5C51CA2D01A00D24AA9 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234AD5C41CA2D01A00D24AA9 /* NoteViewController.swift */; };
 		234AD5C71CA2D07A00D24AA9 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234AD5C61CA2D07A00D24AA9 /* Note.swift */; };
-		234AD5C91CA2D0E400D24AA9 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234AD5C81CA2D0E400D24AA9 /* NoteTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +26,6 @@
 		234AD5C21CA2CE5200D24AA9 /* NotesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotesListViewController.swift; path = ../NotesListViewController.swift; sourceTree = "<group>"; };
 		234AD5C41CA2D01A00D24AA9 /* NoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		234AD5C61CA2D07A00D24AA9 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
-		234AD5C81CA2D0E400D24AA9 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,17 +58,32 @@
 		234AD5AF1CA2CDF300D24AA9 /* CleverNote */ = {
 			isa = PBXGroup;
 			children = (
+				234AD5CA1CA2E34000D24AA9 /* Model */,
 				234AD5B01CA2CDF300D24AA9 /* AppDelegate.swift */,
 				234AD5B41CA2CDF300D24AA9 /* Main.storyboard */,
-				234AD5C21CA2CE5200D24AA9 /* NotesListViewController.swift */,
-				234AD5C61CA2D07A00D24AA9 /* Note.swift */,
-				234AD5C81CA2D0E400D24AA9 /* NoteTableViewCell.swift */,
-				234AD5C41CA2D01A00D24AA9 /* NoteViewController.swift */,
+				234AD5CB1CA2E34E00D24AA9 /* View Controllers */,
 				234AD5B71CA2CDF300D24AA9 /* Assets.xcassets */,
 				234AD5B91CA2CDF300D24AA9 /* LaunchScreen.storyboard */,
 				234AD5BC1CA2CDF300D24AA9 /* Info.plist */,
 			);
 			path = CleverNote;
+			sourceTree = "<group>";
+		};
+		234AD5CA1CA2E34000D24AA9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				234AD5C61CA2D07A00D24AA9 /* Note.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		234AD5CB1CA2E34E00D24AA9 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				234AD5C41CA2D01A00D24AA9 /* NoteViewController.swift */,
+				234AD5C21CA2CE5200D24AA9 /* NotesListViewController.swift */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,7 +160,6 @@
 				234AD5C31CA2CE5200D24AA9 /* NotesListViewController.swift in Sources */,
 				234AD5C51CA2D01A00D24AA9 /* NoteViewController.swift in Sources */,
 				234AD5B11CA2CDF300D24AA9 /* AppDelegate.swift in Sources */,
-				234AD5C91CA2D0E400D24AA9 /* NoteTableViewCell.swift in Sources */,
 				234AD5C71CA2D07A00D24AA9 /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
