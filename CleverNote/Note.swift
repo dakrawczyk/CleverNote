@@ -110,6 +110,6 @@ func localDocumentsDirectoryURL() -> NSURL? {
   }
 
 //  Uncomment this to find the path to your documents directory easily.
-//  print("\(localDocumentsDirectoryURL!)")
+  print("\(localDocumentsDirectoryURL!)")
   return localDocumentsDirectoryURL
 }
