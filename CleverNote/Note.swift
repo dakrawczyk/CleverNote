@@ -12,14 +12,39 @@ enum DocumentError : ErrorType {
   case RuntimeError(String)
 }
 
-let FILE_EXTENSION = "txt"
+let fileExtension = "txt"
+let appGroupIdentifier = "group.com.WindyCityLab.CleverNote"
 
 class Note: UIDocument {
   
   var documentText: String?
   var title: String!
   
+  override func loadFromContents(contents: AnyObject, ofType typeName: String?) throws {
+    
+    if let contentData = contents as? NSData {
+      if contents.length > 0 {
+        self.documentText = String(data: contentData, encoding: NSUTF8StringEncoding)
+      }
+    }
+  }
   
+  override func contentsForType(typeName: String) throws -> AnyObject {
+    
+    
+    if self.documentText == nil {
+      self.documentText = ""
+    }
+    
+    if let docData = self.documentText?.dataUsingEncoding(NSUTF8StringEncoding) {
+      print(docData)
+      return docData
+    } else {
+      throw DocumentError.RuntimeError("Unable to convert String to data")
+    }
+  }
+
+  // Creates a note with a title/filename
   class func createNoteWithTitle(noteTitle: String) -> Note {
     let fileURL = Note.fileUrlForDocumentNamed(noteTitle)
     let noteDocument = Note(fileURL: fileURL)
@@ -28,24 +53,26 @@ class Note: UIDocument {
     return noteDocument
   }
   
+  // Given an array of filenames, return an array of notes from the file system
   class func arrayOfNotesFromArrayOfFileNames(fileNames: [String]) -> [Note] {
     var notes: [Note] = []
     
     for fileName in fileNames {
       let fileNameLessExtension = fileName.stringByReplacingOccurrencesOfString(".txt", withString: "")
-
+      
       let note = Note(fileURL: Note.fileUrlForDocumentNamed(fileNameLessExtension))
       note.title = fileNameLessExtension
-
+      
       notes.append(note)
     }
     return notes
   }
   
+  // Returns all notes in file system
   class func getAllNotesInFileSystem() -> [Note] {
     let localDocuments: [AnyObject]?
     do {
-      localDocuments = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(appGroupContainerURL().path!)
+      localDocuments = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(localDocumentsDirectoryURL().path!)
     } catch _ {
       localDocuments = nil
     }
@@ -56,6 +83,7 @@ class Note: UIDocument {
     return []
   }
   
+  // Returns all notes at specified URL
   class func getAllNotesInDocumentStorage(documentStorageURL: NSURL!) -> [Note] {
     let localDocuments: [AnyObject]?
     do {
@@ -70,66 +98,46 @@ class Note: UIDocument {
     return []
   }
   
-  override func loadFromContents(contents: AnyObject, ofType typeName: String?) throws {
-    
-    if let contentData = contents as? NSData {
-      if contents.length > 0 {
-        self.documentText = String(data: contentData, encoding: NSUTF8StringEncoding)
-      }
-    }
-  }
-  
-  override func contentsForType(typeName: String) throws -> AnyObject {
-    
-    if self.documentText == nil {
-      self.documentText = ""
-    }
-    
-    if let docData = self.documentText?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
-      return docData
-    } else {
-      throw DocumentError.RuntimeError("Unable to convert String to data")
-    }
-    
-    
-  }
-  
+  // Returns the file URL for the file to be saved at
   class func fileUrlForDocumentNamed(name: String) -> NSURL {
     var protectedName = name
     if protectedName.characters.count == 0 {
       protectedName = "Untitled"
     }
     
-    let localDoc = appGroupContainerURL()
+    let localDoc = localDocumentsDirectoryURL()
     let urlWithName = localDoc.URLByAppendingPathComponent(protectedName)
     
-    return urlWithName.URLByAppendingPathExtension(FILE_EXTENSION)
+    return urlWithName.URLByAppendingPathExtension(fileExtension)
   }
 }
 
 
-func ubiquitousContainerURL() -> NSURL {
-  return NSFileManager.defaultManager().URLForUbiquityContainerIdentifier(nil)!
-}
-
-func ubiquitousDocumentsDirectoryURL() -> NSURL {
-  return ubiquitousContainerURL().URLByAppendingPathComponent("Documents")
-}
-
 func appGroupContainerURL() -> NSURL {
-  let groupURL = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.com.WindyCityLab.CleverNote")!.URLByAppendingPathComponent("File Provider Storage")
-  print(groupURL)
-  return groupURL
+  
+  let groupPath = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(appGroupIdentifier)!
+  let storagePath = groupPath.URLByAppendingPathComponent("File Provider Storage")
+  
+  let fileManager = NSFileManager.defaultManager()
+  if fileManager.fileExistsAtPath(storagePath.path!) == false {
+    do {
+      try fileManager.createDirectoryAtPath(storagePath.path!, withIntermediateDirectories: false, attributes: nil)
+    } catch _ {
+      print("error creating filepath")
+    }
+  }
+    print("\(storagePath)")
+
+  return storagePath
 }
 
-func localDocumentsDirectoryURL() -> NSURL? {
+func localDocumentsDirectoryURL() -> NSURL! {
   
   var localDocumentsDirectoryURL: NSURL?
   if let docPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first {
     localDocumentsDirectoryURL = NSURL(fileURLWithPath: docPath)
   }
 
-//  Uncomment this to find the path to your documents directory easily.
-  print("\(localDocumentsDirectoryURL!)")
-  return localDocumentsDirectoryURL
+//  print("\(localDocumentsDirectoryURL!)")
+  return localDocumentsDirectoryURL!
 }

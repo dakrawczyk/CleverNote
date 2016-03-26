@@ -21,9 +21,12 @@ class NoteViewController: UIViewController {
         self.textView.text = self.note.documentText
       }
     }
-
   }
 
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    self.textView.becomeFirstResponder()
+  }
   
   @IBAction func saveButtonTapped(sender: AnyObject) {
     self.note.documentText = self.textView.text

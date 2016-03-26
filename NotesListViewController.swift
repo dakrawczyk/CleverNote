@@ -26,7 +26,6 @@ class NotesListViewController: UIViewController {
     super.viewWillAppear(animated)
     
     refreshNoteList()
-
   }
   
   func refreshNoteList() {
@@ -61,7 +60,6 @@ class NotesListViewController: UIViewController {
           if success == true {
             self.performSegueWithIdentifier(self.noteSegueIdentifier, sender: noteDocument)
             self.notes.append(noteDocument)
-//            self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
           } else {
             print("Save unsuccessful")
           }
