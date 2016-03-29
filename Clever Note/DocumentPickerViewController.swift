@@ -9,94 +9,102 @@
 import UIKit
 
 class DocumentPickerViewController: UIDocumentPickerExtensionViewController {
-  var notes: [Note] = []
   
   var fileCoordinator: NSFileCoordinator {
     let fileCoordinator = NSFileCoordinator()
     fileCoordinator.purposeIdentifier = self.providerIdentifier
     return fileCoordinator
   }
+  var notes: [Note] = []
   
   @IBOutlet weak var confirmButton: UIButton!
-  @IBOutlet weak var confirmView: UIView!
-  
+  @IBOutlet weak var confirmView: UIVisualEffectView!
+  @IBOutlet weak var extensionWarningLabel: UILabel!
   @IBOutlet weak var tableView: UITableView!
+  
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     
     notes = Note.getAllNotesInDocumentStorage(documentStorageURL!)
-    print("got notes: \(notes)")
+    
     tableView.reloadData()
     
   }
   
-  @IBAction func confirmButtonTapped(sender: AnyObject) {
-    switch documentPickerMode {
-    case .ExportToService:
-      //Export
+  override func prepareForPresentationInMode(mode: UIDocumentPickerMode) {
+    
+    if let sourceURL = originalURL {
+      // If the source URL does not have a path extension supported
+      // show the extension warning label.
       
-      if let sourceURL = originalURL {
-        if let fileName = sourceURL.URLByDeletingPathExtension?.lastPathComponent {
-          let destURL = Note.fileUrlForDocumentNamed(fileName)
-          
-          fileCoordinator.coordinateReadingItemAtURL(sourceURL, options: .WithoutChanges, error: nil, byAccessor: { (newURL) in
-            do {
-              try NSFileManager.defaultManager().copyItemAtURL(sourceURL, toURL: destURL)
-              self.dismissGrantingAccessToURL(destURL)
-            } catch _ {
-              print("error copying")
-            }
-          })
-        }
+      // ** This should only apply in Export to and Move to services. **
+      if sourceURL.pathExtension != fileExtension {
+        self.confirmButton.hidden = true
+        self.extensionWarningLabel.hidden = false
       }
-      
-    case .MoveToService:
-      //Move
-      if let sourceURL = originalURL {
-        if let fileName = sourceURL.URLByDeletingPathExtension?.lastPathComponent {
-          let destURL = Note.fileUrlForDocumentNamed(fileName)
-          
-          fileCoordinator.coordinateReadingItemAtURL(sourceURL, options: .WithoutChanges, error: nil, byAccessor: { (newURL) in
-            do {
-              try NSFileManager.defaultManager().copyItemAtURL(sourceURL, toURL: destURL)
-              self.dismissGrantingAccessToURL(destURL)
-            } catch _ {
-              print("error copying")
-            }
-          })
-        }
-      }
-      
-    default:
-      self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     
-  }
-  
-  override func prepareForPresentationInMode(mode: UIDocumentPickerMode) {
     switch mode {
     case .ExportToService:
-      //confirmation Button
+      //Show confirmation button
       self.confirmButton.setTitle("Export to CleverNote", forState: .Normal)
       
     case .MoveToService:
-      //confirmation Button
+      //Show confirmation button
       self.confirmButton.setTitle("Move to CleverNote", forState: .Normal)
       
     case .Open:
-      //file list
+      //Show file list
       self.confirmView.hidden = true
       
     case .Import:
-      //file list
+      //Show file list
       self.confirmView.hidden = true
       
-    default:
-      self.confirmView.hidden = true
     }
+  }
+  
+  @IBAction func confirmButtonTapped(sender: AnyObject) {
     
-    
+    if let sourceURL = originalURL {
+      
+      switch documentPickerMode {
+      case .ExportToService:
+        
+        if let fileName = sourceURL.URLByDeletingPathExtension?.lastPathComponent {
+          let destURL = Note.fileUrlForDocumentNamed(fileName)
+          
+          fileCoordinator.coordinateReadingItemAtURL(sourceURL, options: .WithoutChanges, error: nil, byAccessor: { (newURL) in
+            do {
+              try NSFileManager.defaultManager().copyItemAtURL(sourceURL, toURL: destURL)
+              self.dismissGrantingAccessToURL(destURL)
+            } catch _ {
+              print("error copying")
+            }
+          })
+        }
+        
+      case .MoveToService:
+        
+        if let fileName = sourceURL.URLByDeletingPathExtension?.lastPathComponent {
+          let destURL = Note.fileUrlForDocumentNamed(fileName)
+          
+          fileCoordinator.coordinateReadingItemAtURL(sourceURL, options: .WithoutChanges, error: nil, byAccessor: { (newURL) in
+            do {
+              try NSFileManager.defaultManager().copyItemAtURL(sourceURL, toURL: destURL)
+              self.dismissGrantingAccessToURL(destURL)
+            } catch _ {
+              print("error copying")
+            }
+          })
+        }
+        
+      default:
+        self.dismissViewControllerAnimated(true, completion: nil)
+      }
+      
+    }
   }
   
 }
@@ -120,8 +128,7 @@ extension DocumentPickerViewController: UITableViewDelegate, UITableViewDataSour
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
     let noteDocument = notes[indexPath.row]
-    let documentURL = self.documentStorageURL!.URLByAppendingPathComponent("\(noteDocument.title).txt")
-    self.dismissGrantingAccessToURL(documentURL)
+    self.dismissGrantingAccessToURL(noteDocument.fileURL)
     
   }
 }

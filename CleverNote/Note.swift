@@ -13,12 +13,14 @@ enum DocumentError : ErrorType {
 }
 
 let fileExtension = "txt"
+
 let appGroupIdentifier = "group.com.WindyCityLab.CleverNote"
 
 class Note: UIDocument {
   
   var documentText: String?
   var title: String!
+  
   
   override func loadFromContents(contents: AnyObject, ofType typeName: String?) throws {
     
@@ -85,14 +87,14 @@ class Note: UIDocument {
   // Returns all notes at specified URL
   class func getAllNotesInDocumentStorage(documentStorageURL: NSURL!) -> [Note] {
     
-    
-    let localDocuments: [AnyObject]?
+    let contentsOfDirectoryArray: [AnyObject]?
     do {
-      localDocuments = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(documentStorageURL!.path!)
+      contentsOfDirectoryArray = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(documentStorageURL!.path!)
     } catch _ {
-      localDocuments = nil
+      contentsOfDirectoryArray = nil
     }
-    if let fileNames = localDocuments as? [String] {
+    
+    if let fileNames = contentsOfDirectoryArray as? [String] {
       return Note.arrayOfNotesFromArrayOfFileNames(fileNames)
     }
     
