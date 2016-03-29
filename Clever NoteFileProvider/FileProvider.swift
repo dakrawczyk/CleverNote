@@ -50,9 +50,19 @@ class FileProvider: NSFileProviderExtension {
     
     let placeholderURL = NSFileProviderExtension.placeholderURLForURL(self.documentStorageURL().URLByAppendingPathComponent(fileName))
     
-    // TODO: get file size for file at <url> from model
-    let fileSize = 0
-    let metadata = [NSURLFileSizeKey: fileSize]
+    var fileSize: UInt64 = 0
+    
+    do {
+      let attr: NSDictionary? = try NSFileManager.defaultManager().attributesOfItemAtPath(url.path!)
+      
+      if let _attr = attr {
+        fileSize = _attr.fileSize();
+      }
+    } catch {
+      print("Error: \(error)")
+    }
+    
+    let metadata = [NSURLFileSizeKey: NSNumber(unsignedLongLong: fileSize)]
     do {
       try NSFileProviderExtension.writePlaceholderAtURL(placeholderURL, withMetadata: metadata)
     } catch {
@@ -63,9 +73,7 @@ class FileProvider: NSFileProviderExtension {
   }
   
   override func startProvidingItemAtURL(url: NSURL, completionHandler: ((error: NSError?) -> Void)?) {
-    // Should ensure that the actual file is in the position returned by URLForItemWithIdentifier, then call the completion handler
     
-    // TODO: get the contents of file at <url> from model
     let fileData = NSData(contentsOfURL: url)
     
     do {
