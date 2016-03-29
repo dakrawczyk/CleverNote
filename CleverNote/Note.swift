@@ -85,6 +85,8 @@ class Note: UIDocument {
   
   // Returns all notes at specified URL
   class func getAllNotesInDocumentStorage(documentStorageURL: NSURL!) -> [Note] {
+    
+    
     let localDocuments: [AnyObject]?
     do {
       localDocuments = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(documentStorageURL!.path!)

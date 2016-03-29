@@ -44,10 +44,37 @@
                                     <outlet property="delegate" destination="J6p-g8-CHO" id="ktu-9U-1am"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="akc-hB-tB7">
+                                <rect key="frame" x="0.0" y="0.0" width="350" height="400"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFf-l9-fWJ">
+                                        <rect key="frame" x="8" y="145" width="334" height="84"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="84" id="qwq-AK-NQu"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="confirmButtonTapped:" destination="J6p-g8-CHO" eventType="touchUpInside" id="TVz-0K-qd9"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="0.70338893581081086" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="hFf-l9-fWJ" firstAttribute="centerY" secondItem="akc-hB-tB7" secondAttribute="centerY" constant="-13" id="7SP-4Z-fdY"/>
+                                    <constraint firstItem="hFf-l9-fWJ" firstAttribute="centerX" secondItem="akc-hB-tB7" secondAttribute="centerX" id="9B7-ya-4bv"/>
+                                    <constraint firstAttribute="trailing" secondItem="hFf-l9-fWJ" secondAttribute="trailing" constant="8" id="XDS-nC-3VR"/>
+                                    <constraint firstItem="hFf-l9-fWJ" firstAttribute="leading" secondItem="akc-hB-tB7" secondAttribute="leading" constant="8" id="b6w-N8-bFF"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="akc-hB-tB7" firstAttribute="trailing" secondItem="2OA-xW-pAF" secondAttribute="trailing" id="1MN-b0-5i5"/>
                             <constraint firstItem="2OA-xW-pAF" firstAttribute="bottom" secondItem="UQD-kz-Mfv" secondAttribute="top" id="Bsy-r6-JQY"/>
+                            <constraint firstItem="akc-hB-tB7" firstAttribute="leading" secondItem="2OA-xW-pAF" secondAttribute="leading" id="Eh7-70-aoa"/>
+                            <constraint firstItem="akc-hB-tB7" firstAttribute="top" secondItem="2OA-xW-pAF" secondAttribute="top" id="auq-ec-NS2"/>
+                            <constraint firstItem="akc-hB-tB7" firstAttribute="bottom" secondItem="UQD-kz-Mfv" secondAttribute="top" id="dk9-Zx-Gx6"/>
                             <constraint firstItem="2OA-xW-pAF" firstAttribute="top" secondItem="Vdh-Gp-eV6" secondAttribute="top" id="eg4-ec-2Pn"/>
                             <constraint firstAttribute="trailing" secondItem="2OA-xW-pAF" secondAttribute="trailing" id="lz2-4D-ama"/>
                             <constraint firstItem="2OA-xW-pAF" firstAttribute="leading" secondItem="Vdh-Gp-eV6" secondAttribute="leading" id="xcE-Pa-6Ez"/>
@@ -56,6 +83,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="350" height="400"/>
                     <connections>
+                        <outlet property="confirmButton" destination="hFf-l9-fWJ" id="h0R-ds-dQK"/>
+                        <outlet property="confirmView" destination="akc-hB-tB7" id="LfY-KK-wNQ"/>
                         <outlet property="tableView" destination="2OA-xW-pAF" id="P2L-oy-IjC"/>
                     </connections>
                 </viewController>
