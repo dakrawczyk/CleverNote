@@ -25,11 +25,11 @@
                                         <rect key="frame" x="0.0" y="28" width="350" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r3a-wO-CjR" id="WIT-iG-hc9">
-                                            <rect key="frame" x="0.0" y="0.0" width="350" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RYf-tR-1ib">
-                                                    <rect key="frame" x="15" y="0.0" width="320" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="320" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

@@ -30,8 +30,7 @@ class Note: UIDocument {
   }
   
   override func contentsForType(typeName: String) throws -> AnyObject {
-    
-    
+
     if self.documentText == nil {
       self.documentText = ""
     }
@@ -128,7 +127,7 @@ func appGroupContainerURL() -> NSURL {
       print("error creating filepath")
     }
   }
-    print("\(storagePath)")
+//    print("\(storagePath)")
 
   return storagePath
 }

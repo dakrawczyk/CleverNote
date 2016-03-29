@@ -65,10 +65,8 @@ class FileProvider: NSFileProviderExtension {
 
 
     override func itemChangedAtURL(url: NSURL) {
-        // Called at some point after the file has changed; the provider may then trigger an upload
-
-        // TODO: mark file at <url> as needing an update in the model; kick off update process
         NSLog("Item changed at URL %@", url)
+      
     }
 
     override func stopProvidingItemAtURL(url: NSURL) {
