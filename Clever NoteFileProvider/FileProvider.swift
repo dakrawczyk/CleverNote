@@ -51,15 +51,16 @@ class FileProvider: NSFileProviderExtension {
         // Should ensure that the actual file is in the position returned by URLForItemWithIdentifier, then call the completion handler
 
         // TODO: get the contents of file at <url> from model
-        let fileData = NSData()
+        let fileData = NSData(contentsOfURL: url)
 
         do {
-            _ = try fileData.writeToURL(url, options: NSDataWritingOptions())
+            _ = try fileData!.writeToURL(url, options: NSDataWritingOptions())
+          completionHandler?(error: nil);
+
         } catch {
-            // Handle error
+          completionHandler?(error: nil);
         }
 
-        completionHandler?(error: nil);
     }
 
 

@@ -15,6 +15,8 @@ class NoteViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    
     self.note.openWithCompletionHandler { (success) in
       if success == true {
         self.title = self.note.title

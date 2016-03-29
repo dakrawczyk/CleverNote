@@ -72,7 +72,7 @@ class Note: UIDocument {
   class func getAllNotesInFileSystem() -> [Note] {
     let localDocuments: [AnyObject]?
     do {
-      localDocuments = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(localDocumentsDirectoryURL().path!)
+      localDocuments = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(appGroupContainerURL().path!)
     } catch _ {
       localDocuments = nil
     }
@@ -107,8 +107,8 @@ class Note: UIDocument {
       protectedName = "Untitled"
     }
     
-    let localDoc = localDocumentsDirectoryURL()
-    let urlWithName = localDoc.URLByAppendingPathComponent(protectedName)
+    let baseURL = appGroupContainerURL()
+    let urlWithName = baseURL.URLByAppendingPathComponent(protectedName)
     
     return urlWithName.URLByAppendingPathExtension(fileExtension)
   }
