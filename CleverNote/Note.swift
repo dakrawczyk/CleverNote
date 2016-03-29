@@ -28,7 +28,6 @@ enum DocumentError : ErrorType {
 }
 
 let fileExtension = "txt"
-let appGroupIdentifier = "group.com.WindyCityLab.CleverNote"
 
 class Note: UIDocument {
   
@@ -52,7 +51,6 @@ class Note: UIDocument {
     }
     
     if let docData = documentText?.dataUsingEncoding(NSUTF8StringEncoding) {
-      print(docData)
       return docData
     } else {
       throw DocumentError.RuntimeError("Unable to convert String to data")
@@ -85,28 +83,11 @@ class Note: UIDocument {
   class func getAllNotesInFileSystem() -> [Note] {
     let localDocuments: [AnyObject]?
     do {
-      localDocuments = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(appGroupContainerURL().path!)
+      localDocuments = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(localDocumentsDirectoryURL().path!)
     } catch _ {
       localDocuments = nil
     }
     if let fileNames = localDocuments as? [String] {
-      return Note.arrayOfNotesFromArrayOfFileNames(fileNames)
-    }
-    
-    return []
-  }
-  
-  // Returns all notes at specified URL
-  class func getAllNotesInDocumentStorage(documentStorageURL: NSURL!) -> [Note] {
-    
-    let contentsOfDirectoryArray: [AnyObject]?
-    do {
-      contentsOfDirectoryArray = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(documentStorageURL!.path!)
-    } catch _ {
-      contentsOfDirectoryArray = nil
-    }
-    
-    if let fileNames = contentsOfDirectoryArray as? [String] {
       return Note.arrayOfNotesFromArrayOfFileNames(fileNames)
     }
     
@@ -120,30 +101,11 @@ class Note: UIDocument {
       protectedName = "Untitled"
     }
     
-    let baseURL = appGroupContainerURL()
+    let baseURL = localDocumentsDirectoryURL()
     let urlWithName = baseURL.URLByAppendingPathComponent(protectedName)
     
     return urlWithName.URLByAppendingPathExtension(fileExtension)
   }
-}
-
-
-func appGroupContainerURL() -> NSURL {
-  
-  let groupPath = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(appGroupIdentifier)!
-  let storagePath = groupPath.URLByAppendingPathComponent("File Provider Storage")
-  
-  let fileManager = NSFileManager.defaultManager()
-  if fileManager.fileExistsAtPath(storagePath.path!) == false {
-    do {
-      try fileManager.createDirectoryAtPath(storagePath.path!, withIntermediateDirectories: false, attributes: nil)
-    } catch _ {
-      print("error creating filepath")
-    }
-  }
-  //    print("\(storagePath)")
-  
-  return storagePath
 }
 
 func localDocumentsDirectoryURL() -> NSURL! {
