@@ -1,10 +1,25 @@
-//
-//  DocumentPickerViewController.swift
-//  Clever Note
-//
-//  Created by Dave Krawczyk on 3/23/16.
-//  Copyright © 2016 Dave Krawczyk. All rights reserved.
-//
+/**
+ * Copyright (c) 2016 Razeware LLC
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
 
 import UIKit
 
@@ -12,10 +27,10 @@ class DocumentPickerViewController: UIDocumentPickerExtensionViewController {
   
   var fileCoordinator: NSFileCoordinator {
     let fileCoordinator = NSFileCoordinator()
-    fileCoordinator.purposeIdentifier = self.providerIdentifier
+    fileCoordinator.purposeIdentifier = providerIdentifier
     return fileCoordinator
   }
-  var notes: [Note] = []
+  var notes = [Note]()
   
   @IBOutlet weak var confirmButton: UIButton!
   @IBOutlet weak var confirmView: UIVisualEffectView!
@@ -28,7 +43,6 @@ class DocumentPickerViewController: UIDocumentPickerExtensionViewController {
     notes = Note.getAllNotesInDocumentStorage(documentStorageURL!)
     
     tableView.reloadData()
-    
   }
   
   override func prepareForPresentationInMode(mode: UIDocumentPickerMode) {
@@ -39,8 +53,8 @@ class DocumentPickerViewController: UIDocumentPickerExtensionViewController {
       
       // ** This should only apply in Export to and Move to services. **
       if sourceURL.pathExtension != fileExtension {
-        self.confirmButton.hidden = true
-        self.extensionWarningLabel.hidden = false
+        confirmButton.hidden = true
+        extensionWarningLabel.hidden = false
       }
     }
     
@@ -48,19 +62,19 @@ class DocumentPickerViewController: UIDocumentPickerExtensionViewController {
     switch mode {
     case .ExportToService:
       //Show confirmation button
-      self.confirmButton.setTitle("Export to CleverNote", forState: .Normal)
+      confirmButton.setTitle("Export to CleverNote", forState: .Normal)
       
     case .MoveToService:
       //Show confirmation button
-      self.confirmButton.setTitle("Move to CleverNote", forState: .Normal)
+      confirmButton.setTitle("Move to CleverNote", forState: .Normal)
       
     case .Open:
       //Show file list
-      self.confirmView.hidden = true
+      confirmView.hidden = true
       
     case .Import:
       //Show file list
-      self.confirmView.hidden = true
+      confirmView.hidden = true
       
     }
   }
@@ -101,7 +115,7 @@ class DocumentPickerViewController: UIDocumentPickerExtensionViewController {
         }
         
       default:
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
       }
       
     }
@@ -128,7 +142,7 @@ extension DocumentPickerViewController: UITableViewDelegate, UITableViewDataSour
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
     let noteDocument = notes[indexPath.row]
-    self.dismissGrantingAccessToURL(noteDocument.fileURL)
+    dismissGrantingAccessToURL(noteDocument.fileURL)
     
   }
 }

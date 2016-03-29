@@ -1,10 +1,25 @@
-//
-//  Note.swift
-//  CleverNote
-//
-//  Created by Dave Krawczyk on 3/23/16.
-//  Copyright © 2016 Dave Krawczyk. All rights reserved.
-//
+/**
+ * Copyright (c) 2016 Razeware LLC
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
 
 import UIKit
 
@@ -13,7 +28,6 @@ enum DocumentError : ErrorType {
 }
 
 let fileExtension = "txt"
-
 let appGroupIdentifier = "group.com.WindyCityLab.CleverNote"
 
 class Note: UIDocument {
@@ -26,18 +40,18 @@ class Note: UIDocument {
     
     if let contentData = contents as? NSData {
       if contents.length > 0 {
-        self.documentText = String(data: contentData, encoding: NSUTF8StringEncoding)
+        documentText = String(data: contentData, encoding: NSUTF8StringEncoding)
       }
     }
   }
   
   override func contentsForType(typeName: String) throws -> AnyObject {
 
-    if self.documentText == nil {
-      self.documentText = ""
+    if documentText == nil {
+      documentText = ""
     }
     
-    if let docData = self.documentText?.dataUsingEncoding(NSUTF8StringEncoding) {
+    if let docData = documentText?.dataUsingEncoding(NSUTF8StringEncoding) {
       print(docData)
       return docData
     } else {
@@ -61,9 +75,7 @@ class Note: UIDocument {
     for fileName in fileNames {
       let fileNameLessExtension = fileName.stringByReplacingOccurrencesOfString(".txt", withString: "")
       
-      let note = Note(fileURL: Note.fileUrlForDocumentNamed(fileNameLessExtension))
-      note.title = fileNameLessExtension
-      
+      let note = Note.createNoteWithTitle(fileNameLessExtension)
       notes.append(note)
     }
     return notes
