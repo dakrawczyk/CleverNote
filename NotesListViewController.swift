@@ -89,8 +89,8 @@ class NotesListViewController: UIViewController {
   
 }
 
-//MARK: UITableViewDelegate & UITableViewDataSource
-extension NotesListViewController: UITableViewDelegate, UITableViewDataSource {
+//MARK: UITableViewDataSource
+extension NotesListViewController: UITableViewDataSource {
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return notes.count
@@ -104,9 +104,15 @@ extension NotesListViewController: UITableViewDelegate, UITableViewDataSource {
     return cell
   }
 
+}
+
+//MARK: UITableViewDelegate
+extension NotesListViewController: UITableViewDelegate {
+  
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
     let noteDocument = notes[indexPath.row]
     performSegueWithIdentifier(noteSegueIdentifier, sender: noteDocument)
   }
+
 }

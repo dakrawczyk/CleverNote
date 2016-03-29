@@ -46,7 +46,7 @@ class Note: UIDocument {
   }
   
   override func contentsForType(typeName: String) throws -> AnyObject {
-
+    
     if documentText == nil {
       documentText = ""
     }
@@ -58,7 +58,7 @@ class Note: UIDocument {
       throw DocumentError.RuntimeError("Unable to convert String to data")
     }
   }
-
+  
   // Creates a note with a title/filename
   class func createNoteWithTitle(noteTitle: String) -> Note {
     let fileURL = Note.fileUrlForDocumentNamed(noteTitle)
@@ -141,8 +141,8 @@ func appGroupContainerURL() -> NSURL {
       print("error creating filepath")
     }
   }
-//    print("\(storagePath)")
-
+  //    print("\(storagePath)")
+  
   return storagePath
 }
 
@@ -152,7 +152,7 @@ func localDocumentsDirectoryURL() -> NSURL! {
   if let docPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first {
     localDocumentsDirectoryURL = NSURL(fileURLWithPath: docPath)
   }
-
-//  print("\(localDocumentsDirectoryURL!)")
+  
+  //  print("\(localDocumentsDirectoryURL!)")
   return localDocumentsDirectoryURL!
 }

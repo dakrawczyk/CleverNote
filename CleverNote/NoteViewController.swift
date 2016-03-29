@@ -24,7 +24,7 @@
 import UIKit
 
 class NoteViewController: UIViewController {
-
+  
   var note: Note!
   @IBOutlet weak var textView: UITextView!
   
@@ -42,11 +42,11 @@ class NoteViewController: UIViewController {
         let okayAction = UIAlertAction(title: "Okay", style: .Default, handler: nil)
         resultAlertController.addAction(okayAction)
         self.presentViewController(resultAlertController, animated: true, completion: nil)
-
+        
       }
     }
   }
-
+  
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     textView.becomeFirstResponder()
@@ -68,7 +68,7 @@ class NoteViewController: UIViewController {
       self.presentViewController(resultAlertController, animated: true, completion: nil)
       
     }
-
+    
   }
-
+  
 }
