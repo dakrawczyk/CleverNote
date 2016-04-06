@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "234AD5DD1CA2E4A200D24AA9"
-               BuildableName = "Clever NoteFileProvider.appex"
-               BlueprintName = "Clever NoteFileProvider"
+               BuildableName = "Provider.appex"
+               BlueprintName = "Provider"
                ReferencedContainer = "container:CleverNote.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -48,8 +48,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "234AD5DD1CA2E4A200D24AA9"
-            BuildableName = "Clever NoteFileProvider.appex"
-            BlueprintName = "Clever NoteFileProvider"
+            BuildableName = "Provider.appex"
+            BlueprintName = "Provider"
             ReferencedContainer = "container:CleverNote.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
